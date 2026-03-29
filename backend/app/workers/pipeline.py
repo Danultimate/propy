@@ -173,13 +173,13 @@ For each recommendation (3-5 total), use this format:
 - What it does: ...
 - Solves: [which pain point]
 - Implementation effort: Low / Medium / High
-- Estimated monthly cost: ~$X
+- Estimated monthly cost: ~£X
 
 ## 5. ROI Estimates
 For each recommendation provide:
 - Hours saved/month: ~X hrs (based on [specific task])
-- Hourly cost assumed: $Y/hr (industry average)
-- Annual saving: ~$Z
+- Hourly cost assumed: £Y/hr (industry average)
+- Annual saving: ~£Z
 - Industry benchmark: "[stat from known source]"
 
 End with a summary ROI table.
@@ -188,7 +188,7 @@ End with a summary ROI table.
 Provide 3 clear, actionable bullet points as a call to action.
 
 ---
-Write in a professional but approachable tone. Be specific — avoid generic AI buzzwords. Base all estimates on realistic industry data.
+Write in a professional but approachable tone. Be specific — avoid generic AI buzzwords. Base all estimates on realistic UK industry data. Use £ (GBP) for all monetary values.
 """
 
 
