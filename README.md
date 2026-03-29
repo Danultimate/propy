@@ -208,7 +208,7 @@ Every AI-generated proposal follows this structure:
 
 ```bash
 # On your VPS
-mkdir -p /opt/propy && cd /opt/propy
+mkdir -p /docker/propy && cd /docker/propy
 git clone git@github.com:Danultimate/propy.git .
 cp .env.example .env
 # Fill in production values — strong passwords, real API keys
@@ -236,10 +236,10 @@ This pulls the latest code, builds images, runs migrations, and starts all servi
 
 ```bash
 # Add to crontab (crontab -e)
-0 2 * * * /opt/propy/scripts/backup.sh
+0 2 * * * /docker/propy/scripts/backup.sh
 ```
 
-Backups are stored at `/opt/propy/backups/` and kept for 14 days.
+Backups are stored at `/docker/propy/backups/` and kept for 14 days.
 
 ### Update
 

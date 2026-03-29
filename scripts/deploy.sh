@@ -2,7 +2,7 @@
 # Run on your VPS to deploy or update Propy
 set -e
 
-cd /opt/propy
+cd /docker/propy
 
 echo ">>> Pulling latest code..."
 git pull
