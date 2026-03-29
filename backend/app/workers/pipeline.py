@@ -248,7 +248,10 @@ def _web_search(query: str, max_results: int = 5) -> list[dict]:
 
 
 def _tavily_search(query: str, max_results: int) -> list[dict]:
-    from tavily import TavilyClient
-    client = TavilyClient(api_key=settings.tavily_api_key)
-    response = client.search(query=query, max_results=max_results)
-    return response.get("results", [])
+    try:
+        from tavily import TavilyClient
+        client = TavilyClient(api_key=settings.tavily_api_key)
+        response = client.search(query=query, max_results=max_results)
+        return response.get("results", [])
+    except Exception:
+        return []

@@ -22,7 +22,14 @@ async def trigger_run(client_id: uuid.UUID, payload: RunCreate, db: AsyncSession
     )
     db.add(run)
     await db.commit()
-    await db.refresh(run)
+
+    # Reload with relationship eagerly to avoid lazy-load error during serialization
+    result = await db.execute(
+        select(AnalysisRun)
+        .where(AnalysisRun.id == run.id)
+        .options(selectinload(AnalysisRun.result))
+    )
+    run = result.scalar_one()
 
     # Dispatch to Celery
     run_analysis_pipeline.delay(str(run.id), str(client_id), payload.deep_scan)
