@@ -5,7 +5,7 @@ from app.config import settings
 
 router = APIRouter()
 
-SUPPORTED_PROVIDERS = ["claude", "openai"]
+SUPPORTED_PROVIDERS = ["claude", "openai", "gemini"]
 
 
 class ProviderUpdate(BaseModel):

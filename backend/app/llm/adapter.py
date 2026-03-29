@@ -1,6 +1,6 @@
 """
 Model-agnostic LLM adapter.
-Switch providers by setting LLM_PROVIDER=claude|openai in .env
+Switch providers by setting LLM_PROVIDER=claude|openai|gemini in .env
 """
 from abc import ABC, abstractmethod
 from app.config import settings
@@ -36,10 +36,21 @@ class OpenAIAdapter(LLMAdapter):
         return response.choices[0].message.content
 
 
+class GeminiAdapter(LLMAdapter):
+    def complete(self, prompt: str) -> str:
+        import google.generativeai as genai
+        genai.configure(api_key=settings.gemini_api_key)
+        model = genai.GenerativeModel("gemini-1.5-pro")
+        response = model.generate_content(prompt)
+        return response.text
+
+
 def get_llm_adapter() -> LLMAdapter:
     provider = settings.llm_provider.lower()
     if provider == "claude":
         return ClaudeAdapter()
     if provider == "openai":
         return OpenAIAdapter()
-    raise ValueError(f"Unsupported LLM provider: {provider}. Use 'claude' or 'openai'.")
+    if provider == "gemini":
+        return GeminiAdapter()
+    raise ValueError(f"Unsupported LLM provider: {provider}. Use 'claude', 'openai', or 'gemini'.")
