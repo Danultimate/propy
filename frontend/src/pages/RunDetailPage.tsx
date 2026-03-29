@@ -29,6 +29,8 @@ export default function RunDetailPage() {
     enabled: !!clientId,
   })
 
+  const [activeTab, setActiveTab] = useState<'tech' | 'company' | 'proposal'>('proposal')
+
   const regenerate = useMutation({
     mutationFn: () => api.runs.regenerate(clientId!, runId!),
     onSuccess: (newRun) => {
@@ -40,7 +42,6 @@ export default function RunDetailPage() {
   if (!run) return <p className="text-sm text-muted-foreground">Loading…</p>
 
   const result = run.result
-  const [activeTab, setActiveTab] = useState<'tech' | 'company' | 'proposal'>('proposal')
 
   return (
     <div className="space-y-6">
